@@ -1,0 +1,19 @@
+.mood-songs{
+    padding-top: 5rem;
+}
+.mood-songs h2{
+    color: white;
+}
+.title{
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    font-size: 1rem;
+}
+.ri-play-line ,
+.ri-pause-line{
+    color: white;
+}
+.songs-sections{
+padding-bottom: 1rem;
+}
