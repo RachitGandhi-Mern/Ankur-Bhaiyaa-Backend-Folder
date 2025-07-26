@@ -1,0 +1,49 @@
+   OVERALL FLOW (ENGLISH)
+	1.	App Initialization
+	•	express, cookie-parser middlewares are initialized.
+	•	Routes are connected from ./Routes/auth.routes.
+	2.	Database Connection
+	•	Mongoose connects MongoDB using .connect() with process.env.MONGODB_URL.
+	3.	User Model (Schema)
+	•	A userModel is created with username and password fields.
+	4.	Register Route (/auth/register)
+	•	Accepts username + password.
+	•	Creates new user in MongoDB.
+	•	Creates a JWT token and stores it in a cookie.
+	5.	Login Route (/auth/login)
+	•	Accepts username + password.
+	•	Validates if user exists and password is correct.
+	•	Sends back success message if valid.
+	6.	Protected Route (/auth/user)
+	•	Checks for JWT in cookie.
+	•	Verifies token.
+	•	If valid, fetches user data from DB.
+
+
+
+🔁 OVERALL FLOW (HINGLISH)
+	1.	App Setup
+	•	express, cookie-parser jaise middleware lagaye jaate hain.
+	•	/auth route auth.routes se connect hota hai.
+	2.	MongoDB se connection
+	•	Mongoose connect() se .env wali MongoDB URL se DB se judta hai.
+	3.	User ka Schema
+	•	username aur password fields ke saath user ka model banaya jaata hai.
+	4.	Register Route (/auth/register)
+	•	User ke username aur password ko accept karta hai.
+	•	User DB me store hota hai.
+	•	JWT token banake cookie me set hota hai.
+	5.	Login Route (/auth/login)
+	•	Username-password verify karta hai.
+	•	Agar user hai aur password sahi hai to success message deta hai.
+	6.	User Route (/auth/user)
+	•	Cookie se token uthata hai.
+	•	JWT token verify karta hai.
+	•	Token valid hai to DB se user ka data fetch karta hai.
+
+
+💡 Best Practices
+✅ Store passwords as hashed values (use bcrypt)
+✅ Always handle errors with try...catch
+✅ Secure JWT using HttpOnly and Secure cookies
+✅ Never push .env to GitHub
