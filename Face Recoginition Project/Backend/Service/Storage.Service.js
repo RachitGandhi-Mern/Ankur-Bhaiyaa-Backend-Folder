@@ -1,5 +1,5 @@
 var ImageKit = require("imagekit");
-var mongoose = require('mongoose')
+var mongoose = require('mongoose');
 
 var imagekit = new ImageKit({
     publicKey : process.env.IMAGEKIT_PUBLIC_KEY,
