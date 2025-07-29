@@ -10,7 +10,7 @@ exports.signup = async (req, res) => {
     if (existingUser) {
       return res.status(409).json({ message: "User Already Exists" });
     }
-    const user = await User.create({ username, password });
+    const user = await User.create({ username, password:await bcrypt.hash(password,10) });
     
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
       expiresIn: '7d'
@@ -27,4 +27,34 @@ exports.signup = async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
+};
+
+
+exports.login = async (req, res) => {
+    try {
+        const{username , password} = req.body
+        const user = await User.findOne({
+            username
+        })
+
+        if(!user){
+            res.status(400).json({message :"User not found"})
+        }
+        const ispassword = await bcrypt.compare(password , user.password)
+        if(!ispassword){
+            res.status(400).json({message :"Invalid Password"})
+        }
+        const Token = jwt.sign({id:user._id} , process.env.JWT_SECRET)
+        res.cookie("token", Token)
+
+        res.status(200).json({
+            Message:"User Loggedin Successfully",
+            user
+        })
+    } catch (error) {
+        res.status(401).json({
+            Message:"Invalid Credientials"
+        })
+    }
+  
 };
