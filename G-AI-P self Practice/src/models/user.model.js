@@ -10,7 +10,7 @@ const userSchema = mongoose.Schema({
     type:String,
     required:true
     }
-}, {timestampe:true})
+}, {timestamps:true})
 
 const userModel = mongoose.model('User', userSchema)
 module.exports = userModel
