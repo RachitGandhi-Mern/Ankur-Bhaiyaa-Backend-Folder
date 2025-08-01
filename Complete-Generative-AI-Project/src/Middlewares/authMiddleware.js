@@ -3,10 +3,9 @@ const userModel = require('../Model/user.model');
 
 exports.authMiddleware = async (req, res, next) => {
   const token = req.cookies?.token;
-
   if (!token) {
     return res.status(401).json({
-      message: "Unauthorized. Please log in first",
+      message: "Unauthorized. Please login first",
     });
   }
 
